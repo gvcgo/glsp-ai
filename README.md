@@ -1,2 +1,2 @@
 # glsp-ai
-AI completion for lsp.
+AI completions for lsp.
