@@ -19,7 +19,6 @@ func New(method, url string) (r *Request) {
 	r = &Request{
 		method: method,
 		url:    url,
-		client: &http.Client{},
 	}
 	return
 }
@@ -38,6 +37,14 @@ func (r *Request) Reset() {
 	r.url = ""
 	r.req = nil
 	r.body = nil
+}
+
+func (r *Request) SetMethod(method string) {
+	r.method = method
+}
+
+func (r *Request) SetURL(url string) {
+	r.url = url
 }
 
 func (r *Request) SetQuery(key, value string) error {
@@ -77,6 +84,9 @@ func (r *Request) SetHeader(key, value string) error {
 func (r *Request) Fetch() (*http.Response, error) {
 	if err := r.initReq(); err != nil {
 		return nil, err
+	}
+	if r.client == nil {
+		r.client = &http.Client{}
 	}
 	return r.client.Do(r.req)
 }
