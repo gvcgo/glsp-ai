@@ -1,6 +1,6 @@
 package main
 
-import "github.com/gvcgo/glsp-ai/ai/fittencode"
+import "github.com/gvcgo/glsp-ai/internal/ai/fittencode"
 
 func main() {
 	fittencode.TestFitten()
